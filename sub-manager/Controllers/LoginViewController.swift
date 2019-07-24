@@ -19,5 +19,8 @@ class LoginViewController: UIViewController {
     }
     
     
-
+    @IBAction func loginPressed(_ sender: Any) {
+        //go to my subscriptions
+    }
+    
 }
