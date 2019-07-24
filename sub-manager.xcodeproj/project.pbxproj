@@ -11,7 +11,6 @@
 		8D1F203222E7FE1D006E6CEC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1F203122E7FE1D006E6CEC /* RegisterViewController.swift */; };
 		8D5524EA22AF39CC002B7852 /* MySubscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5524E922AF39CC002B7852 /* MySubscriptions.swift */; };
 		8D596D1522B47F3E00563026 /* CustomSubCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D596D1422B47F3E00563026 /* CustomSubCells.xib */; };
-		8D596D1722B73F7800563026 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D596D1622B73F7800563026 /* image.png */; };
 		8D59C9C422CC5F7500066812 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D59C9C322CC5F7500066812 /* PriceViewController.swift */; };
 		8D6BCE2522B8411B00198D6D /* SubscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6BCE2422B8411B00198D6D /* SubscriptionController.swift */; };
 		8D6BCE2C22B9F23600198D6D /* ListOfAvailableSubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6BCE2A22B9F23600198D6D /* ListOfAvailableSubs.swift */; };
@@ -35,7 +34,6 @@
 		8D1F203122E7FE1D006E6CEC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8D5524E922AF39CC002B7852 /* MySubscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubscriptions.swift; sourceTree = "<group>"; };
 		8D596D1422B47F3E00563026 /* CustomSubCells.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSubCells.xib; sourceTree = "<group>"; };
-		8D596D1622B73F7800563026 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		8D59C9C322CC5F7500066812 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
 		8D6BCE2422B8411B00198D6D /* SubscriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionController.swift; sourceTree = "<group>"; };
 		8D6BCE2A22B9F23600198D6D /* ListOfAvailableSubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAvailableSubs.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				8DE57B0022AB3AB900B0C1FB /* AppDelegate.swift */,
 				8DE57B0422AB3AB900B0C1FB /* Main.storyboard */,
 				8DE57B0722AB3ABD00B0C1FB /* Assets.xcassets */,
-				8D596D1622B73F7800563026 /* image.png */,
 				8DE57B0922AB3ABD00B0C1FB /* LaunchScreen.storyboard */,
 				8DE57B0C22AB3ABD00B0C1FB /* Info.plist */,
 				8DE57B1222AB3D0000B0C1FB /* GoogleService-Info.plist */,
@@ -231,7 +228,6 @@
 				8DE57B1322AB3D0000B0C1FB /* GoogleService-Info.plist in Resources */,
 				8D596D1522B47F3E00563026 /* CustomSubCells.xib in Resources */,
 				8DE57B0822AB3ABD00B0C1FB /* Assets.xcassets in Resources */,
-				8D596D1722B73F7800563026 /* image.png in Resources */,
 				8DE57B0622AB3AB900B0C1FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
