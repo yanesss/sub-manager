@@ -303,6 +303,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="72s-Eh-jf6"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="YeQ-Y7-hbD" id="Z4E-hP-9Uz"/>
+                        <outlet property="passwordTextField" destination="A37-uJ-6CU" id="HN3-Qw-Sai"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTb-7e-g7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
