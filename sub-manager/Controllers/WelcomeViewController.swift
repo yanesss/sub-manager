@@ -28,7 +28,10 @@ class WelcomeViewController: UIViewController {
     
     
     @IBAction func registerButton(_ sender: Any) {
+        
     }
+    
+    @IBAction func unwindToMySubscriptions(_ sender: UIStoryboardSegue) {}
     
 
 }

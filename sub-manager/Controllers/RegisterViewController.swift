@@ -23,16 +23,14 @@ class RegisterViewController: UIViewController {
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             
             if error != nil {
-                print(error)
+                print("register failed")
             } else {
-                print("registration success")
-                //continue to MySubscriptions Page
+                //self. --> used when inside a closure (Keyword: "in")
+                self.performSegue(withIdentifier: "RegisterMySubscription", sender: self)
             }
             
         }
         
-        
     }
     
-
 }

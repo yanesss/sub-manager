@@ -71,6 +71,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="p18-If-aNr">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="SP0-kd-410">
+                            <connections>
+                                <action selector="signOutButton:" destination="zib-Aq-F04" id="vQo-Ah-b7y"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="v05-qx-qwd">
                             <connections>
                                 <segue destination="2xp-aT-nCh" kind="show" identifier="showSubscriptions" id="vTj-hE-MsG"/>
@@ -185,7 +190,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEL-P0-Lq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213" y="108"/>
+            <point key="canvasLocation" x="2178" y="108"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="IGC-E9-gFO">
@@ -236,6 +241,7 @@
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="registerPressed:" destination="q5y-cr-zz0" eventType="touchUpInside" id="2Uf-jo-mcW"/>
+                                    <segue destination="8yP-jj-grr" kind="showDetail" identifier="RegisterMySubscription" id="wyc-fT-cVL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -249,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="reZ-Si-V0Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2207" y="481"/>
+            <point key="canvasLocation" x="912" y="593"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="M7a-9u-dBZ">
@@ -300,6 +306,7 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="loginPressed:" destination="yCM-qG-bWb" eventType="touchUpInside" id="EnT-Yu-3CT"/>
+                                    <segue destination="8yP-jj-grr" kind="showDetail" identifier="LoginMySubscription" id="c3d-0O-6gk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -313,7 +320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTb-7e-g7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2208.695652173913" y="-258.48214285714283"/>
+            <point key="canvasLocation" x="912" y="-258"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="wCR-ZG-Gxd">
@@ -355,7 +362,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EiA-B3-YDV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244.9275362318842" y="107.8125"/>
+            <point key="canvasLocation" x="-104" y="115"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="wyc-fT-cVL"/>
+    </inferredMetricsTieBreakers>
 </document>

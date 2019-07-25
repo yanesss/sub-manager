@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 
 class MySubscriptions: UIViewController {
@@ -51,6 +52,26 @@ class MySubscriptions: UIViewController {
         }
         
     }
+    
+    //post: signs out user
+    // sends user back to welcome page
+    @IBAction func signOutButton(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("error signing out")
+            //set up UI message to show user
+        }
+        
+        //go back to welome screen
+        guard (self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)) != nil
+            else {
+                print("no root viewcontroller")
+                return
+        }
+        
+    }
+    
     
     func addRefreshControl() {
         refresh.tintColor = UIColor.red
