@@ -54,13 +54,13 @@ class MySubscriptions: UIViewController {
     }
     
     //post: signs out user
-    // sends user back to welcome page
+    //      sends user back to welcome page
     @IBAction func signOutButton(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
         do {
-            try Auth.auth().signOut()
-        } catch {
-            print("error signing out")
-            //set up UI message to show user
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
         }
         
         //go back to welome screen

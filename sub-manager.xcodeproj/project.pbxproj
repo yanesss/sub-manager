@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		25BBF91F65F93E7256F55EF9 /* Pods_sub_manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BAC104C776A85C27D2540B /* Pods_sub_manager.framework */; };
-		8D1F203222E7FE1D006E6CEC /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1F203122E7FE1D006E6CEC /* RegisterViewController.swift */; };
 		8D5524EA22AF39CC002B7852 /* MySubscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5524E922AF39CC002B7852 /* MySubscriptions.swift */; };
 		8D596D1522B47F3E00563026 /* CustomSubCells.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D596D1422B47F3E00563026 /* CustomSubCells.xib */; };
 		8D59C9C422CC5F7500066812 /* PriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D59C9C322CC5F7500066812 /* PriceViewController.swift */; };
@@ -16,7 +15,6 @@
 		8D6BCE2C22B9F23600198D6D /* ListOfAvailableSubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6BCE2A22B9F23600198D6D /* ListOfAvailableSubs.swift */; };
 		8D6BCE2D22B9F23600198D6D /* ListOfAvailableSubs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D6BCE2B22B9F23600198D6D /* ListOfAvailableSubs.xib */; };
 		8DA583CE22E7FCD2007781BE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA583CD22E7FCD2007781BE /* WelcomeViewController.swift */; };
-		8DA583D022E7FDCA007781BE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA583CF22E7FDCA007781BE /* LoginViewController.swift */; };
 		8DB0650622B30E36006D0EF3 /* Subs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB0650522B30E36006D0EF3 /* Subs.swift */; };
 		8DB45C9C22B0B8B100124381 /* SubCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB45C9B22B0B8B100124381 /* SubCells.swift */; };
 		8DD3F0AB22DD68E400526121 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3F0AA22DD68E400526121 /* NotificationNameExtension.swift */; };
@@ -31,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		64BAC104C776A85C27D2540B /* Pods_sub_manager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sub_manager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D1F203122E7FE1D006E6CEC /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		8D5524E922AF39CC002B7852 /* MySubscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySubscriptions.swift; sourceTree = "<group>"; };
 		8D596D1422B47F3E00563026 /* CustomSubCells.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomSubCells.xib; sourceTree = "<group>"; };
 		8D59C9C322CC5F7500066812 /* PriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceViewController.swift; sourceTree = "<group>"; };
@@ -39,7 +36,6 @@
 		8D6BCE2A22B9F23600198D6D /* ListOfAvailableSubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAvailableSubs.swift; sourceTree = "<group>"; };
 		8D6BCE2B22B9F23600198D6D /* ListOfAvailableSubs.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListOfAvailableSubs.xib; sourceTree = "<group>"; };
 		8DA583CD22E7FCD2007781BE /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		8DA583CF22E7FDCA007781BE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8DB0650522B30E36006D0EF3 /* Subs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subs.swift; sourceTree = "<group>"; };
 		8DB45C9B22B0B8B100124381 /* SubCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCells.swift; sourceTree = "<group>"; };
 		8DD3F0AA22DD68E400526121 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
@@ -126,8 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				8DA583CD22E7FCD2007781BE /* WelcomeViewController.swift */,
-				8DA583CF22E7FDCA007781BE /* LoginViewController.swift */,
-				8D1F203122E7FE1D006E6CEC /* RegisterViewController.swift */,
 				8D5524E922AF39CC002B7852 /* MySubscriptions.swift */,
 				8D6BCE2422B8411B00198D6D /* SubscriptionController.swift */,
 				8D59C9C322CC5F7500066812 /* PriceViewController.swift */,
@@ -298,7 +292,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DA583D022E7FDCA007781BE /* LoginViewController.swift in Sources */,
 				8D6BCE2522B8411B00198D6D /* SubscriptionController.swift in Sources */,
 				8DB45C9C22B0B8B100124381 /* SubCells.swift in Sources */,
 				8DD3F0AD22E05A4100526121 /* StringExtension.swift in Sources */,
@@ -308,7 +301,6 @@
 				8DB0650622B30E36006D0EF3 /* Subs.swift in Sources */,
 				8D59C9C422CC5F7500066812 /* PriceViewController.swift in Sources */,
 				8DA583CE22E7FCD2007781BE /* WelcomeViewController.swift in Sources */,
-				8D1F203222E7FE1D006E6CEC /* RegisterViewController.swift in Sources */,
 				8DE57B0122AB3AB900B0C1FB /* AppDelegate.swift in Sources */,
 				8DD3F0AB22DD68E400526121 /* NotificationNameExtension.swift in Sources */,
 			);
