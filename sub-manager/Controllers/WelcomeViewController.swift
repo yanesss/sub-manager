@@ -30,22 +30,30 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func signInSelectorChanged(_ sender: UISegmentedControl) {
-        //when user changes selector
-        //bool flips
+        //when user changes selector bool flips
         isSignIn = !isSignIn
         
         //check bool
         if isSignIn {
             signInLabel.text = "Sign In"
             signInButton.setTitle("Sign In", for: .normal)
+            emailTextField.text = ""
+            passwordTextField.text = ""
+            
         } else {
             signInLabel.text = "Register"
             signInButton.setTitle("Register", for: .normal)
+            emailTextField.text = ""
+            passwordTextField.text = ""
         }
         
     }
     
-
+    /*
+     ** pre: sign in to current account
+     **      or register new account
+     ** post: takes user to subscription page
+     */
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         //check email and password validation
         if let email = emailTextField.text, let password = passwordTextField.text {
@@ -57,7 +65,7 @@ class WelcomeViewController: UIViewController {
                         // go to my subscriptions page
                         self.performSegue(withIdentifier: "HomePage", sender: self)
                     } else {
-                        print(error)
+                        self.errorAlert()
                     }
                     
                 }
@@ -65,18 +73,16 @@ class WelcomeViewController: UIViewController {
                 //create new user in firebase
                 Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                     if let user = user {
-                        //user found: go to my subs
+                        //user found: go to my subscriptions page
                         self.performSegue(withIdentifier: "HomePage", sender: self)
                     } else {
-                        //error
-                        
+                        self.errorAlert()
                     }
                 }
             }
             
         }
         
-       
     }
     
     //dismiss keyboard
@@ -85,5 +91,22 @@ class WelcomeViewController: UIViewController {
         passwordTextField.resignFirstResponder()
     }
     
+    // alert message when user types in invalid credentials
+    // erase text fields of invalid credentials
+    func errorAlert() {
+        if isSignIn {
+            let alert = UIAlertController(title: "Error", message: "Incorrect password or email", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+            present(alert, animated: true)
+            emailTextField.text = ""
+            passwordTextField.text = ""
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Must be valid email address and password with a minimum of 6 characters", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+            present(alert, animated: true)
+            emailTextField.text = ""
+            passwordTextField.text = ""
+        }
+    }
     
 }
