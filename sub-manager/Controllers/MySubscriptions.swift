@@ -39,6 +39,9 @@ class MySubscriptions: UIViewController {
         //refresh controller
         addRefreshControl()
         
+        //check for user
+        //getCurrentUserInfo()
+        
         //observer listens for Notification from PriceViewDelegate
         NotificationCenter.default.addObserver(forName: .subscription, object: nil, queue: OperationQueue.main) { (notification) in
             let subVc = notification.object as! PriceViewController
@@ -53,26 +56,46 @@ class MySubscriptions: UIViewController {
         
     }
     
+    //get current user
+    func getCurrentUserInfo() {
+        if Auth.auth().currentUser != nil {
+            print("there is a user")
+        } else {
+            print("there is no user")
+        }
+
+        let user = Auth.auth().currentUser
+        guard let uid = user?.uid else {
+            return
+        }
+    }
+    
+    //save subscriptions to user id
+    func saveSubscriptions() {
+        
+    }
+    
     //post: signs out user
     //      sends user back to welcome page
     @IBAction func signOutButton(_ sender: Any) {
         let firebaseAuth = Auth.auth()
+        
         do {
             try firebaseAuth.signOut()
+            // go to sign in page
+            print("sign out success")
+            
+            
+            
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
         
-        //go back to welome screen
-        guard (self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)) != nil
-            else {
-                print("no root viewcontroller")
-                return
-        }
-        
     }
     
-    
+    /*
+     ** provides the ability to refresh if subscription did not update
+    */
     func addRefreshControl() {
         refresh.tintColor = UIColor.red
         refresh.attributedTitle = NSAttributedString(string: "Refreshing Subscriptions")
@@ -86,6 +109,7 @@ class MySubscriptions: UIViewController {
         monthlyExpense()
     }
     
+    //Calculates monthly subscription expense
     func monthlyExpense() {
         var cost = 0.00
         for price in priceOfCompany {

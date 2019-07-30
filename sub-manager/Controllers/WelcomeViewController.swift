@@ -29,6 +29,7 @@ class WelcomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
     @IBAction func signInSelectorChanged(_ sender: UISegmentedControl) {
         //when user changes selector bool flips
         isSignIn = !isSignIn
@@ -37,14 +38,14 @@ class WelcomeViewController: UIViewController {
         if isSignIn {
             signInLabel.text = "Sign In"
             signInButton.setTitle("Sign In", for: .normal)
-            emailTextField.text = ""
-            passwordTextField.text = ""
+//            emailTextField.text = ""
+//            passwordTextField.text = ""
             
         } else {
             signInLabel.text = "Register"
             signInButton.setTitle("Register", for: .normal)
-            emailTextField.text = ""
-            passwordTextField.text = ""
+//            emailTextField.text = ""
+//            passwordTextField.text = ""
         }
         
     }
@@ -62,8 +63,9 @@ class WelcomeViewController: UIViewController {
                 //sign in user w/ firebase
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                     if let user = user {
-                        // go to my subscriptions page
+                        self.getUserInfo()
                         self.performSegue(withIdentifier: "HomePage", sender: self)
+                        
                     } else {
                         self.errorAlert()
                     }
@@ -75,6 +77,7 @@ class WelcomeViewController: UIViewController {
                     if let user = user {
                         //user found: go to my subscriptions page
                         self.performSegue(withIdentifier: "HomePage", sender: self)
+                        
                     } else {
                         self.errorAlert()
                     }
@@ -83,6 +86,14 @@ class WelcomeViewController: UIViewController {
             
         }
         
+    }
+    
+    private func navigateToMainInterface() {
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let mainNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "MySubscriptions") as? MySubscriptions else {
+            return
+        }
+        present(mainNavigationVC, animated: true, completion: nil)
     }
     
     //dismiss keyboard
@@ -98,14 +109,14 @@ class WelcomeViewController: UIViewController {
             let alert = UIAlertController(title: "Error", message: "Incorrect password or email", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
             present(alert, animated: true)
-            emailTextField.text = ""
-            passwordTextField.text = ""
+//            emailTextField.text = ""
+//            passwordTextField.text = ""
         } else {
             let alert = UIAlertController(title: "Error", message: "Must be valid email address and password with a minimum of 6 characters", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
             present(alert, animated: true)
-            emailTextField.text = ""
-            passwordTextField.text = ""
+//            emailTextField.text = ""
+//            passwordTextField.text = ""
         }
     }
     

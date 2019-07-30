@@ -31,10 +31,12 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    //Notifies observer when button is pressed
     @IBAction func buttonPressed(_ sender: Any) {
         NotificationCenter.default.post(name: .subscription, object: self) //self is passing in the entire view controller
         view.endEditing(true)
     }
+    
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let digit = Int(string) {
@@ -50,6 +52,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         return false
     }
 
+    //allows user input to print numbers from right to left
     func updateAmount() -> String? {
         let formatter = NumberFormatter()
         formatter.numberStyle = NumberFormatter.Style.currency

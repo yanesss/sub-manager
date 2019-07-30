@@ -13,7 +13,7 @@
         <!--My Subscriptions-->
         <scene sceneID="cAO-4h-da5">
             <objects>
-                <viewController id="zib-Aq-F04" customClass="MySubscriptions" customModule="sub_manager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MySubscriptions" id="zib-Aq-F04" customClass="MySubscriptions" customModule="sub_manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ubJ-C6-2Qk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -69,7 +69,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rmf-v1-8te"/>
                     </view>
-                    <toolbarItems/>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="2ri-hL-Ygd"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="p18-If-aNr">
                         <barButtonItem key="leftBarButtonItem" title="Sign Out" id="SP0-kd-410">
                             <connections>
@@ -91,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H1J-TK-KWh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3220" y="108"/>
+            <point key="canvasLocation" x="3857" y="108"/>
         </scene>
         <!--Subscription Controller-->
         <scene sceneID="Bfo-xb-KlL">
@@ -124,7 +126,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="om3-HK-cdh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4064" y="108"/>
+            <point key="canvasLocation" x="4639" y="108"/>
         </scene>
         <!--Price View Controller-->
         <scene sceneID="lgY-iu-TtG">
@@ -171,7 +173,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bga-Rj-zga" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="NpN-LB-Nol" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4867" y="108"/>
+            <point key="canvasLocation" x="5368" y="108"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7CH-xo-Nj2">
@@ -185,12 +187,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="zib-Aq-F04" kind="relationship" relationship="rootViewController" id="ycU-jJ-Nxm"/>
+                        <segue destination="zib-Aq-F04" kind="relationship" relationship="rootViewController" id="w2H-m8-DLW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UEL-P0-Lq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2178" y="108"/>
+            <point key="canvasLocation" x="3086" y="108"/>
         </scene>
         <!--Welcome View Controller-->
         <scene sceneID="wCR-ZG-Gxd">
@@ -258,6 +260,7 @@
                                         <state key="normal" title="Sign In"/>
                                         <connections>
                                             <action selector="signInButtonTapped:" destination="fzM-kl-ywd" eventType="touchUpInside" id="e4v-PJ-mSW"/>
+                                            <segue destination="8yP-jj-grr" kind="showDetail" identifier="HomePage" id="sL3-Gn-zN7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -277,18 +280,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WkI-Jq-dLM"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Cwk-11-DiV"/>
                     <connections>
                         <outlet property="emailTextField" destination="Kc1-hH-2tU" id="jVE-Qx-ZRP"/>
                         <outlet property="passwordTextField" destination="LS7-u2-jsq" id="qsK-RW-5RN"/>
                         <outlet property="signInButton" destination="I4K-aP-gWQ" id="IHf-mF-Jfi"/>
                         <outlet property="signInLabel" destination="ypm-ga-E0T" id="3xR-Jm-W35"/>
                         <outlet property="signInSelector" destination="LlM-XC-HlC" id="NEq-zs-dCm"/>
-                        <segue destination="8yP-jj-grr" kind="showDetail" identifier="HomePage" id="DL1-Cv-RA4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EiA-B3-YDV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1228.985507246377" y="107.8125"/>
+            <point key="canvasLocation" x="2230" y="108"/>
         </scene>
     </scenes>
 </document>

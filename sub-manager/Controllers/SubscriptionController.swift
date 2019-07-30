@@ -39,6 +39,9 @@ class SubscriptionController: UITableViewController {
         return cell
     }
     
+    /*
+    ** allows user to add the price of chosen subscription
+    */
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Price") as? PriceViewController {
             vc.selectedSubscription = company[indexPath.row]
