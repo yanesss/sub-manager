@@ -19,6 +19,8 @@ class MySubscriptions: UIViewController {
     var listOfCompany = [String]()
     var priceOfCompany = [String]()
     let refresh = UIRefreshControl()
+    var ref: DatabaseReference!
+    var uid: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,35 +59,26 @@ class MySubscriptions: UIViewController {
     }
     
     //get current user
-    func getCurrentUserInfo() {
-        if Auth.auth().currentUser != nil {
-            print("there is a user")
-        } else {
-            print("there is no user")
-        }
-
+    func getCurrentUserID() {
         let user = Auth.auth().currentUser
-        guard let uid = user?.uid else {
-            return
+        if let user = user {
+            uid = user.uid
         }
     }
     
     //save subscriptions to user id
     func saveSubscriptions() {
-        
+        ref = Database.database().reference()
     }
     
     //post: signs out user
     //      sends user back to welcome page
     @IBAction func signOutButton(_ sender: Any) {
         let firebaseAuth = Auth.auth()
-        
         do {
             try firebaseAuth.signOut()
             // go to sign in page
             print("sign out success")
-            
-            
             
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class PriceViewController: UIViewController, UITextFieldDelegate {
 
@@ -17,6 +19,9 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     var selectedSubscription: String?
     var subscriptionToLoad: String = ""
     var amount: Int = 0
+    var ref: DatabaseReference!
+    //var key: String?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +39,61 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     //Notifies observer when button is pressed
     @IBAction func buttonPressed(_ sender: Any) {
         NotificationCenter.default.post(name: .subscription, object: self) //self is passing in the entire view controller
+        sendSubscriptionToDb()
         view.endEditing(true)
+        
+    }
+    
+    func sendSubscriptionToDb() {
+//        let user = Auth.auth().currentUser?.uid
+//
+//        let subscriptionDB = Database.database().reference().child(user!)
+//
+//        let subscriptionDictionary = ["Name": selectedSubscription]
+
+//        subscriptionDB.child("Subscription").setValue(subscriptionDictionary) {
+//            (error, ref) in
+//            if error != nil {
+//                print("error sending data")
+//            } else {
+//                print("subscription saved")
+//            }
+       // }
+        
+        
+        ref = Database.database().reference()
+        let user = Auth.auth().currentUser
+        
+        guard let uid = user?.uid else {
+            return
+        }
+        
+        //sets first subscription selected
+//        self.ref.child("users").child(uid).setValue(["Subscription": selectedSubscription])
+
+        //update and add new subscriptions
+        let key = ref.child("user").child("Subscription").childByAutoId().key
+        let post = ["subscription": selectedSubscription]
+        let childUpdates = ["/users/\(key)": post]
+        ref.updateChildValues(childUpdates)
+        
+        //TODO: NEST DATA
+        
+        //THIS WORKS
+//
+//        let subscriptionDB = ref.child("/Users/\(uid)")
+//
+//        let subscriptionDictionary = ["Subscription": selectedSubscription]
+//
+//        subscriptionDB.childByAutoId().setValue(subscriptionDictionary) {
+//            (error, ref) in
+//            if error != nil {
+//                print("error")
+//            } else {
+//                print("success")
+//            }
+//        }
+        
     }
     
     
