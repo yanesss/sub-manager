@@ -19,9 +19,8 @@ class MySubscriptions: UIViewController {
     var listOfCompany = [String]()
     var priceOfCompany = [String]()
     let refresh = UIRefreshControl()
-    var ref: DatabaseReference!
-    var uid: String?
-    
+    var subscriptionArray: [Subs] = [Subs]()
+   
     override func viewDidLoad() {
         super.viewDidLoad()
    
@@ -41,34 +40,9 @@ class MySubscriptions: UIViewController {
         //refresh controller
         addRefreshControl()
         
-        //check for user
-        //getCurrentUserInfo()
         
-        //observer listens for Notification from PriceViewDelegate
-        NotificationCenter.default.addObserver(forName: .subscription, object: nil, queue: OperationQueue.main) { (notification) in
-            let subVc = notification.object as! PriceViewController
-            self.listOfCompany.append(subVc.nameOfSubscription.text!)
-            self.priceOfCompany.append(subVc.priceOfSubscription.text!)
-            let indexPath = IndexPath(row: self.listOfCompany.count - 1, section: 0)
-            self.monthlyExpense()
-            self.tableView.beginUpdates()
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-            self.tableView.endUpdates()
-        }
+        retrieveSubscriptions()
         
-    }
-    
-    //get current user
-    func getCurrentUserID() {
-        let user = Auth.auth().currentUser
-        if let user = user {
-            uid = user.uid
-        }
-    }
-    
-    //save subscriptions to user id
-    func saveSubscriptions() {
-        ref = Database.database().reference()
     }
     
     //post: signs out user
@@ -101,6 +75,29 @@ class MySubscriptions: UIViewController {
         tableView.reloadData()
         monthlyExpense()
     }
+    
+    // Retrieve subs from db
+    func retrieveSubscriptions() {
+        let subscriptionDB = Database.database().reference().child("Users")
+        
+        //when there is a new subscription put into the database
+        subscriptionDB.observe(.childAdded) { (snapshot) in
+            //grab data inside snapshot
+            let snapshotValue = snapshot.value as! Dictionary<String, String>
+            
+            let sub = snapshotValue["Subscription"]
+            let price = snapshotValue["Price"]
+            
+            let subInfo = Subs(subscription: sub!, price: price!)
+            self.subscriptionArray.append(subInfo)
+            
+            self.configureTableView()
+            self.tableView.reloadData()
+        }
+        
+    }
+
+    
     
     //Calculates monthly subscription expense
     func monthlyExpense() {
@@ -139,15 +136,16 @@ class MySubscriptions: UIViewController {
 extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
     //displays the number of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfCompany.count
+        //return listOfCompany.count
+        return subscriptionArray.count
     }
     
     //displays what is seen on each row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! SubCells
         
-        cell.companyName.text = listOfCompany[indexPath.row]
-        cell.price.text = priceOfCompany[indexPath.row]
+        cell.companyName.text = subscriptionArray[indexPath.row].subscription
+        cell.price.text = subscriptionArray[indexPath.row].price
         
         return cell
     }
