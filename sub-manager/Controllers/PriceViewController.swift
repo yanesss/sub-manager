@@ -42,12 +42,13 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     func sendSubscriptionToDb() {
         let ref = Database.database().reference()
         let user = Auth.auth().currentUser
-        
+        let email = user?.email
+        print(email)
         guard let uid = user?.uid else {
             return
         }
         
-        let subscriptionDB = ref.child("Users")
+        let subscriptionDB = ref.child("/users/\(uid)")
         let subscriptionDictionary = ["Subscription": selectedSubscription, "Price": priceOfSubscription.text!]
         subscriptionDB.childByAutoId().setValue(subscriptionDictionary) {
             (error, ref) in

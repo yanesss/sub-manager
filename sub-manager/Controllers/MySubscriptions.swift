@@ -20,6 +20,8 @@ class MySubscriptions: UIViewController {
     var priceOfCompany = [String]()
     let refresh = UIRefreshControl()
     var subscriptionArray: [Subs] = [Subs]()
+    var ref: DatabaseReference!
+    var refHandle: DatabaseHandle!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +55,11 @@ class MySubscriptions: UIViewController {
             try firebaseAuth.signOut()
             // go to sign in page
             print("sign out success")
-            
+
+            dismiss(animated: true) {
+                self.navigationController?.popViewController(animated: true)
+            }
+
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
@@ -78,24 +84,38 @@ class MySubscriptions: UIViewController {
     
     // Retrieve subs from db
     func retrieveSubscriptions() {
-        let subscriptionDB = Database.database().reference().child("Users")
+        let user = Auth.auth().currentUser
+        guard let uid = user?.uid else {
+            return
+        }
         
+        let subscriptionDB = Database.database().reference().child("users").child(uid)
+
         //when there is a new subscription put into the database
         subscriptionDB.observe(.childAdded) { (snapshot) in
             //grab data inside snapshot
+            print(snapshot)
             let snapshotValue = snapshot.value as! Dictionary<String, String>
-            
+
             let sub = snapshotValue["Subscription"]
             let price = snapshotValue["Price"]
-            
+
             let subInfo = Subs(subscription: sub!, price: price!)
             self.subscriptionArray.append(subInfo)
-            
+
             self.configureTableView()
             self.tableView.reloadData()
         }
-        
+
     }
+    
+    //TODO - Delete from database
+    func deleteSubscription() {
+      
+    }
+    
+    
+    //TODO - Fix monthly expense
 
     
     

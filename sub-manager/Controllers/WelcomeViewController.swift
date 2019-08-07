@@ -63,6 +63,7 @@ class WelcomeViewController: UIViewController {
                 //sign in user w/ firebase
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                     if let user = user {
+                        print(Auth.auth().currentUser?.uid)
                         self.performSegue(withIdentifier: "HomePage", sender: self)
                         
                     } else {
@@ -118,5 +119,6 @@ class WelcomeViewController: UIViewController {
 //            passwordTextField.text = ""
         }
     }
+    
     
 }
