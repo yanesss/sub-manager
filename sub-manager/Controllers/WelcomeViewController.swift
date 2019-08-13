@@ -74,13 +74,28 @@ class WelcomeViewController: UIViewController {
             } else {
                 //create new user in firebase
                 Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                    if let user = user {
-                        //user found: go to my subscriptions page
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    
+                    guard let uid = user?.user.uid else {
+                        return
+                    }
+                    
+                    let ref = Database.database().reference(fromURL: "https://sub-manager-79124.firebaseio.com/")
+                    let userReference = ref.child("users").child(uid)
+                    let values = ["email": email]
+                    userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                        if err != nil {
+                            print(err)
+                            return
+                        }
+                        //login to homepage
                         self.performSegue(withIdentifier: "HomePage", sender: self)
                         
-                    } else {
-                        self.errorAlert()
-                    }
+                    })
+                    
                 }
             }
             

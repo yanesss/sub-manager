@@ -25,6 +25,9 @@ class MySubscriptions: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        let ref = Database.database().reference(fromURL: "https://sub-manager-79124.firebaseio.com/")
+//        ref.updateChildValues(["someValue" : 123123])
    
         //used to access table view
         tableView.delegate = self
@@ -84,28 +87,28 @@ class MySubscriptions: UIViewController {
     
     // Retrieve subs from db
     func retrieveSubscriptions() {
-        let user = Auth.auth().currentUser
-        guard let uid = user?.uid else {
-            return
-        }
-        
-        let subscriptionDB = Database.database().reference().child("users").child(uid)
-
-        //when there is a new subscription put into the database
-        subscriptionDB.observe(.childAdded) { (snapshot) in
-            //grab data inside snapshot
-            print(snapshot)
-            let snapshotValue = snapshot.value as! Dictionary<String, String>
-
-            let sub = snapshotValue["Subscription"]
-            let price = snapshotValue["Price"]
-
-            let subInfo = Subs(subscription: sub!, price: price!)
-            self.subscriptionArray.append(subInfo)
-
-            self.configureTableView()
-            self.tableView.reloadData()
-        }
+//        let user = Auth.auth().currentUser
+//        guard let uid = user?.uid else {
+//            return
+//        }
+//
+//        let subscriptionDB = Database.database().reference().child("users").child(uid)
+//
+//        //when there is a new subscription put into the database
+//        subscriptionDB.observe(.childAdded) { (snapshot) in
+//            //grab data inside snapshot
+//            print(snapshot)
+//            let snapshotValue = snapshot.value as! Dictionary<String, String>
+//
+//            let sub = snapshotValue["Subscription"]
+//            let price = snapshotValue["Price"]
+//
+//            let subInfo = Subs(subscription: sub!, price: price!)
+//            self.subscriptionArray.append(subInfo)
+//
+//            self.configureTableView()
+//            self.tableView.reloadData()
+//        }
 
     }
     
@@ -178,8 +181,7 @@ extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
     //swipe to delete feature
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            listOfCompany.remove(at: indexPath.row)
-            priceOfCompany.remove(at: indexPath.row)
+            subscriptionArray.remove(at: indexPath.row)
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .automatic)
             updateMonthlyExpenseOnDelete()
@@ -187,6 +189,8 @@ extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
+    
+    
     
 }
 
