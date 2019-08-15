@@ -22,13 +22,11 @@ class MySubscriptions: UIViewController {
     var subscriptionArray: [Subs] = [Subs]()
     var ref: DatabaseReference!
     var refHandle: DatabaseHandle!
-   
+    @IBOutlet weak var signOutButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let ref = Database.database().reference(fromURL: "https://sub-manager-79124.firebaseio.com/")
-//        ref.updateChildValues(["someValue" : 123123])
-   
         //used to access table view
         tableView.delegate = self
         tableView.dataSource = self
@@ -48,26 +46,40 @@ class MySubscriptions: UIViewController {
         
         retrieveSubscriptions()
         
+        //user is not logged in
+        if Auth.auth().currentUser?.uid == nil {
+            perform(#selector(handleSignOut), with: nil, afterDelay: 0)
+        }
+        
     }
     
     //post: signs out user
     //      sends user back to welcome page
     @IBAction func signOutButton(_ sender: Any) {
+        handleSignOut()
+    }
+    
+    @objc func handleSignOut() {
         let firebaseAuth = Auth.auth()
+        
         do {
             try firebaseAuth.signOut()
             // go to sign in page
             print("sign out success")
-
+            
             dismiss(animated: true) {
                 self.navigationController?.popViewController(animated: true)
             }
-
+            
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
         
     }
+    
+        
+        
+   
     
     /*
      ** provides the ability to refresh if subscription did not update

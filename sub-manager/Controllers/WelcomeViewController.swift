@@ -62,13 +62,21 @@ class WelcomeViewController: UIViewController {
             if isSignIn {
                 //sign in user w/ firebase
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                    if let user = user {
-                        print(Auth.auth().currentUser?.uid)
-                        self.performSegue(withIdentifier: "HomePage", sender: self)
-                        
-                    } else {
-                        self.errorAlert()
+//                    if let user = user {
+//                        print(Auth.auth().currentUser?.uid)
+//                        self.performSegue(withIdentifier: "HomePage", sender: self)
+//
+//                    } else {
+//                        self.errorAlert()
+//                    }
+                    //TODO: FIX THIS 
+                    
+                    if error != nil {
+                        print(error)
                     }
+                    
+                    self.performSegue(withIdentifier: "HomePage", sender: self)
+                    
                     
                 }
             } else {

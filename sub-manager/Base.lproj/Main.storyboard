@@ -87,6 +87,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="expenses" destination="9UR-Y3-BGR" id="3C0-Ir-RfL"/>
+                        <outlet property="signOutButton" destination="SP0-kd-410" id="t6H-ny-yaB"/>
                         <outlet property="tableView" destination="0mA-XF-e0u" id="Ndj-hA-QCa"/>
                         <outlet property="totalCosts" destination="bLp-4f-joe" id="F3r-mG-gMV"/>
                     </connections>
