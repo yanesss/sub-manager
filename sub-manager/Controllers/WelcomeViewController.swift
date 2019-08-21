@@ -38,14 +38,14 @@ class WelcomeViewController: UIViewController {
         if isSignIn {
             signInLabel.text = "Sign In"
             signInButton.setTitle("Sign In", for: .normal)
-//            emailTextField.text = ""
-//            passwordTextField.text = ""
+            emailTextField.text = ""
+            passwordTextField.text = ""
             
         } else {
             signInLabel.text = "Register"
             signInButton.setTitle("Register", for: .normal)
-//            emailTextField.text = ""
-//            passwordTextField.text = ""
+            emailTextField.text = ""
+            passwordTextField.text = ""
         }
         
     }
@@ -62,22 +62,14 @@ class WelcomeViewController: UIViewController {
             if isSignIn {
                 //sign in user w/ firebase
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-//                    if let user = user {
-//                        print(Auth.auth().currentUser?.uid)
-//                        self.performSegue(withIdentifier: "HomePage", sender: self)
-//
-//                    } else {
-//                        self.errorAlert()
-//                    }
-                    //TODO: FIX THIS 
-                    
-                    if error != nil {
-                        print(error)
+                    if let user = user {
+                        print(Auth.auth().currentUser?.uid)
+                        self.performSegue(withIdentifier: "HomePage", sender: self)
+
+                    } else {
+                        self.errorAlert()
                     }
-                    
-                    self.performSegue(withIdentifier: "HomePage", sender: self)
-                    
-                    
+                   
                 }
             } else {
                 //create new user in firebase
@@ -101,11 +93,12 @@ class WelcomeViewController: UIViewController {
                         }
                         //login to homepage
                         self.performSegue(withIdentifier: "HomePage", sender: self)
-                        
                     })
                     
                 }
             }
+            //clears password after user signs in
+            passwordTextField.text = ""
             
         }
         
@@ -132,14 +125,14 @@ class WelcomeViewController: UIViewController {
             let alert = UIAlertController(title: "Error", message: "Incorrect password or email", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
             present(alert, animated: true)
-//            emailTextField.text = ""
-//            passwordTextField.text = ""
+            emailTextField.text = ""
+            passwordTextField.text = ""
         } else {
             let alert = UIAlertController(title: "Error", message: "Must be valid email address and password with a minimum of 6 characters", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
             present(alert, animated: true)
-//            emailTextField.text = ""
-//            passwordTextField.text = ""
+            emailTextField.text = ""
+            passwordTextField.text = ""
         }
     }
     

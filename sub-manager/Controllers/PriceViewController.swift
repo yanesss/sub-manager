@@ -42,23 +42,22 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     func sendSubscriptionToDb() {
         let ref = Database.database().reference()
         let user = Auth.auth().currentUser
-        let email = user?.email
-        print(email)
+        
         guard let uid = user?.uid else {
             return
         }
         
-        let subscriptionDB = ref.child("/users/\(uid)")
-        let subscriptionDictionary = ["Subscription": selectedSubscription, "Price": priceOfSubscription.text!]
-        subscriptionDB.childByAutoId().setValue(subscriptionDictionary) {
-            (error, ref) in
-            if error != nil {
-                print("error")
-            } else {
-                print("success")
-            }
+        guard let email = user?.email else {
+            return
         }
         
+        print(email)
+        
+        //TODO: FIX EMAIL GETTING ERASED
+        
+        let subscriptionDB = ref.child("/users/\(uid)").child("email")
+        let subscriptionDictionary = ["Subscription": selectedSubscription, "Price": priceOfSubscription.text!]
+        subscriptionDB.childByAutoId().updateChildValues(subscriptionDictionary)
     }
     
     

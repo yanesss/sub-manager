@@ -40,23 +40,25 @@ class MySubscriptions: UIViewController {
         //configure the size of table view
         configureTableView()
         
+        checkIfUserIsLoggedIn()
+        
         //refresh controller
         addRefreshControl()
         
         
         retrieveSubscriptions()
-        
-        //user is not logged in
-        if Auth.auth().currentUser?.uid == nil {
-            perform(#selector(handleSignOut), with: nil, afterDelay: 0)
-        }
-        
     }
     
     //post: signs out user
     //      sends user back to welcome page
     @IBAction func signOutButton(_ sender: Any) {
         handleSignOut()
+    }
+    
+    func checkIfUserIsLoggedIn() {
+        if Auth.auth().currentUser?.uid == nil {
+            perform(#selector(handleSignOut), with: nil, afterDelay: 0)
+        } 
     }
     
     @objc func handleSignOut() {
@@ -76,11 +78,7 @@ class MySubscriptions: UIViewController {
         }
         
     }
-    
-        
-        
-   
-    
+
     /*
      ** provides the ability to refresh if subscription did not update
     */
@@ -99,36 +97,32 @@ class MySubscriptions: UIViewController {
     
     // Retrieve subs from db
     func retrieveSubscriptions() {
-//        let user = Auth.auth().currentUser
-//        guard let uid = user?.uid else {
-//            return
-//        }
-//
-//        let subscriptionDB = Database.database().reference().child("users").child(uid)
-//
-//        //when there is a new subscription put into the database
-//        subscriptionDB.observe(.childAdded) { (snapshot) in
-//            //grab data inside snapshot
-//            print(snapshot)
-//            let snapshotValue = snapshot.value as! Dictionary<String, String>
-//
-//            let sub = snapshotValue["Subscription"]
-//            let price = snapshotValue["Price"]
-//
-//            let subInfo = Subs(subscription: sub!, price: price!)
-//            self.subscriptionArray.append(subInfo)
-//
-//            self.configureTableView()
-//            self.tableView.reloadData()
-//        }
+        let user = Auth.auth().currentUser
+        guard let uid = user?.uid else {
+            return
+        }
+
+        let subscriptionDB = Database.database().reference().child("users").child(uid).child("email")
+
+        //when there is a new subscription put into the database
+        subscriptionDB.observe(.childAdded) { (snapshot) in
+            //grab data inside snapshot
+            print(snapshot)
+            let snapshotValue = snapshot.value as! Dictionary<String, String>
+
+            let sub = snapshotValue["Subscription"]
+            let price = snapshotValue["Price"]
+            self.priceOfCompany.append(price!)
+
+            let subInfo = Subs(subscription: sub!, price: price!)
+            self.subscriptionArray.append(subInfo)
+
+            self.configureTableView()
+            self.monthlyExpense()
+            self.tableView.reloadData()
+        }
 
     }
-    
-    //TODO - Delete from database
-    func deleteSubscription() {
-      
-    }
-    
     
     //TODO - Fix monthly expense
 
@@ -190,10 +184,27 @@ extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
         return true
     }
     
-    //swipe to delete feature
+    //TODO: Delete subscription from database
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+//        guard let uid = Auth.auth().currentUser?.uid else {
+//            return
+//        }
+//
+//        let sub = self.subscriptionArray[indexPath.row]
+//
+//        Database.database().reference().child("users").child(uid).child("email").child(sub.price).removeValue { (error, ref) in
+//            if error != nil {
+//                print("failed to delete")
+//                return
+//            }
+//
+//        }
+        
+        
         if editingStyle == .delete {
             subscriptionArray.remove(at: indexPath.row)
+            priceOfCompany.remove(at: indexPath.row)
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .automatic)
             updateMonthlyExpenseOnDelete()
