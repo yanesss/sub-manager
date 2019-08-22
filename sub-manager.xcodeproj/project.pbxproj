@@ -35,6 +35,7 @@
 		8D6BCE2422B8411B00198D6D /* SubscriptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionController.swift; sourceTree = "<group>"; };
 		8D6BCE2A22B9F23600198D6D /* ListOfAvailableSubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfAvailableSubs.swift; sourceTree = "<group>"; };
 		8D6BCE2B22B9F23600198D6D /* ListOfAvailableSubs.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListOfAvailableSubs.xib; sourceTree = "<group>"; };
+		8D7C7AF4230CF7F8000C00E6 /* sub-manager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "sub-manager.entitlements"; sourceTree = "<group>"; };
 		8DA583CD22E7FCD2007781BE /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8DB0650522B30E36006D0EF3 /* Subs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subs.swift; sourceTree = "<group>"; };
 		8DB45C9B22B0B8B100124381 /* SubCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCells.swift; sourceTree = "<group>"; };
@@ -73,6 +74,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8DA8459C230E7AEA0007AE4A /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				8DE57B0022AB3AB900B0C1FB /* AppDelegate.swift */,
+				8DD3F0AA22DD68E400526121 /* NotificationNameExtension.swift */,
+				8DD3F0AC22E05A4100526121 /* StringExtension.swift */,
+				8DD3F0AE22E1497700526121 /* DoubleExtension.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		8DB45C9A22B0B89B00124381 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,15 +117,16 @@
 		8DE57AFF22AB3AB900B0C1FB /* sub-manager */ = {
 			isa = PBXGroup;
 			children = (
+				8D7C7AF4230CF7F8000C00E6 /* sub-manager.entitlements */,
 				8DE57B1622ACB56400B0C1FB /* Models */,
 				8DE57B1522ACB55400B0C1FB /* Views */,
 				8DE57B1422ACAD6E00B0C1FB /* Controllers */,
-				8DE57B0022AB3AB900B0C1FB /* AppDelegate.swift */,
-				8DE57B0422AB3AB900B0C1FB /* Main.storyboard */,
+				8DA8459C230E7AEA0007AE4A /* Other */,
 				8DE57B0722AB3ABD00B0C1FB /* Assets.xcassets */,
+				8DE57B0422AB3AB900B0C1FB /* Main.storyboard */,
 				8DE57B0922AB3ABD00B0C1FB /* LaunchScreen.storyboard */,
-				8DE57B0C22AB3ABD00B0C1FB /* Info.plist */,
 				8DE57B1222AB3D0000B0C1FB /* GoogleService-Info.plist */,
+				8DE57B0C22AB3ABD00B0C1FB /* Info.plist */,
 			);
 			path = "sub-manager";
 			sourceTree = "<group>";
@@ -141,9 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				8DB0650522B30E36006D0EF3 /* Subs.swift */,
-				8DD3F0AA22DD68E400526121 /* NotificationNameExtension.swift */,
-				8DD3F0AC22E05A4100526121 /* StringExtension.swift */,
-				8DD3F0AE22E1497700526121 /* DoubleExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,6 +201,11 @@
 				TargetAttributes = {
 					8DE57AFC22AB3AB900B0C1FB = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -449,6 +464,7 @@
 			baseConfigurationReference = 9205DC8D297B44DE43948CB5 /* Pods-sub-manager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "sub-manager/sub-manager.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UJ726947JB;
 				INFOPLIST_FILE = "sub-manager/Info.plist";
@@ -468,6 +484,7 @@
 			baseConfigurationReference = E79AFF220332A06036C5C76D /* Pods-sub-manager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "sub-manager/sub-manager.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UJ726947JB;
 				INFOPLIST_FILE = "sub-manager/Info.plist";

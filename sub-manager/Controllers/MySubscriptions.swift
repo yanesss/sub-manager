@@ -45,7 +45,6 @@ class MySubscriptions: UIViewController {
         //refresh controller
         addRefreshControl()
         
-        
         retrieveSubscriptions()
     }
     
@@ -58,7 +57,7 @@ class MySubscriptions: UIViewController {
     func checkIfUserIsLoggedIn() {
         if Auth.auth().currentUser?.uid == nil {
             perform(#selector(handleSignOut), with: nil, afterDelay: 0)
-        } 
+        }
     }
     
     @objc func handleSignOut() {

@@ -18,11 +18,21 @@ class WelcomeViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
     
+    
     var isSignIn: Bool = true
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //observe state of login
+        let listener = Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil {
+//                self.performSegue(withIdentifier: "loginPage", sender: nil)
+                print("user not logged in")
+            }
+        }        
+        Auth.auth().removeStateDidChangeListener(listener)
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,26 +66,31 @@ class WelcomeViewController: UIViewController {
      ** post: takes user to subscription page
      */
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-        //check email and password validation
         if let email = emailTextField.text, let password = passwordTextField.text {
             //check if signed in or register is selected
-            if isSignIn {
-                //sign in user w/ firebase
+            if isSignIn == true {
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                    if let user = user {
-                        print(Auth.auth().currentUser?.uid)
-                        self.performSegue(withIdentifier: "HomePage", sender: self)
-
-                    } else {
-                        self.errorAlert()
+                    if error != nil {
+                        print(error?.localizedDescription)
+                        return
                     }
-                   
+                    //self.performSegue(withIdentifier: "HomePage", sender: self)
+                    self.navigateToMainInterface()
                 }
-            } else {
-                //create new user in firebase
+            }
+            
+            //create new user in firebase
+            if isSignIn == false {
                 Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                     if error != nil {
-                        print(error)
+                        if let errorCode = AuthErrorCode(rawValue: error!._code) {
+                            switch errorCode {
+                            case .weakPassword:
+                                print("Please provide a strong password")
+                            default:
+                                print("There is an error")
+                            }
+                        }
                         return
                     }
                     
@@ -88,14 +103,14 @@ class WelcomeViewController: UIViewController {
                     let values = ["email": email]
                     userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                         if err != nil {
-                            print(err)
+                            print(err?.localizedDescription)
                             return
                         }
                         //login to homepage
-                        self.performSegue(withIdentifier: "HomePage", sender: self)
+                        //self.performSegue(withIdentifier: "HomePage", sender: self)
+                        self.navigateToMainInterface()
                     })
-                    
-                }
+                }   
             }
             //clears password after user signs in
             passwordTextField.text = ""
@@ -135,6 +150,5 @@ class WelcomeViewController: UIViewController {
             passwordTextField.text = ""
         }
     }
-    
     
 }
