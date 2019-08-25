@@ -37,16 +37,15 @@ class MySubscriptions: UIViewController {
         //allow access to custom cells
         tableView.register(UINib(nibName: "CustomSubCells", bundle: nil), forCellReuseIdentifier: "customMessageCell")
         
-        //configure the size of table view
         configureTableView()
         
         checkIfUserIsLoggedIn()
         
-        //refresh controller
         addRefreshControl()
         
         retrieveSubscriptions()
     }
+    
     
     //post: signs out user
     //      sends user back to welcome page

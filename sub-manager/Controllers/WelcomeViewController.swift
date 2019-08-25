@@ -74,8 +74,7 @@ class WelcomeViewController: UIViewController {
                         print(error?.localizedDescription)
                         return
                     }
-                    //self.performSegue(withIdentifier: "HomePage", sender: self)
-                    self.navigateToMainInterface()
+                    self.performSegue(withIdentifier: "HomePage", sender: self)
                 }
             }
             
@@ -107,8 +106,8 @@ class WelcomeViewController: UIViewController {
                             return
                         }
                         //login to homepage
-                        //self.performSegue(withIdentifier: "HomePage", sender: self)
-                        self.navigateToMainInterface()
+                        self.performSegue(withIdentifier: "HomePage", sender: self)
+                    
                     })
                 }   
             }
@@ -117,14 +116,6 @@ class WelcomeViewController: UIViewController {
             
         }
         
-    }
-    
-    private func navigateToMainInterface() {
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        guard let mainNavigationVC = mainStoryBoard.instantiateViewController(withIdentifier: "MySubscriptions") as? MySubscriptions else {
-            return
-        }
-        present(mainNavigationVC, animated: true, completion: nil)
     }
     
     //dismiss keyboard
