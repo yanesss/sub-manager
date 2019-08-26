@@ -72,6 +72,7 @@ class WelcomeViewController: UIViewController {
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                     if error != nil {
                         print(error?.localizedDescription)
+                        self.errorAlert()
                         return
                     }
                     self.performSegue(withIdentifier: "HomePage", sender: self)
@@ -86,8 +87,12 @@ class WelcomeViewController: UIViewController {
                             switch errorCode {
                             case .weakPassword:
                                 print("Please provide a strong password")
+                                let alert = UIAlertController(title: "Weak Password", message: "Password must contain at least 6 characters.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
+                                self.present(alert, animated: true)
                             default:
                                 print("There is an error")
+                                self.errorAlert()
                             }
                         }
                         return
