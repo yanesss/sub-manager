@@ -51,12 +51,21 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        print(email)
-        
         //TODO: FIX EMAIL GETTING ERASED
         
         let subscriptionDB = ref.child("/users/\(uid)").child("email")
-        let subscriptionDictionary = ["Subscription": selectedSubscription, "Price": priceOfSubscription.text!]
+        
+        guard let price = priceOfSubscription.text else {
+            return
+        }
+        
+        var strPrice = price
+        
+        if let i = strPrice.firstIndex(of: "$") {
+            strPrice.remove(at: i)
+        }
+        
+        let subscriptionDictionary = ["Subscription": selectedSubscription, "Price": strPrice]
         subscriptionDB.childByAutoId().updateChildValues(subscriptionDictionary)
     }
     
@@ -82,7 +91,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         let price = Double(amount / 100) + Double(amount % 100) / 100 //if user enter 5 -> 0 + 5 % 100 = 0.05
         return formatter.string(from: NSNumber(value: price))
     }
-
+    
 }
 
 

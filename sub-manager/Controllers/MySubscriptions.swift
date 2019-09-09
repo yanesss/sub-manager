@@ -68,9 +68,9 @@ class MySubscriptions: UIViewController {
             print("sign out success")
             
             dismiss(animated: true) {
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
-            
+           
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
@@ -110,6 +110,7 @@ class MySubscriptions: UIViewController {
 
             let sub = snapshotValue["Subscription"]
             let price = snapshotValue["Price"]
+            //price = price?.removeFormatAmount()
             self.priceOfCompany.append(price!)
 
             let subInfo = Subs(subscription: sub!, price: price!)
@@ -121,10 +122,6 @@ class MySubscriptions: UIViewController {
         }
 
     }
-    
-    //TODO - Fix monthly expense
-
-    
     
     //Calculates monthly subscription expense
     func monthlyExpense() {
@@ -185,20 +182,27 @@ extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
     //TODO: Delete subscription from database
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-//        guard let uid = Auth.auth().currentUser?.uid else {
-//            return
-//        }
-//
-//        let sub = self.subscriptionArray[indexPath.row]
-//
-//        Database.database().reference().child("users").child(uid).child("email").child(sub.price).removeValue { (error, ref) in
-//            if error != nil {
-//                print("failed to delete")
-//                return
-//            }
-//
-//        }
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
         
+        guard let email = Auth.auth().currentUser?.email else {
+            return
+        }
+        
+        let encodeEmail = email.replacingOccurrences(of: ".", with: ",")
+
+        let sub = self.subscriptionArray[indexPath.row]
+        let encodePrice = sub.price.replacingOccurrences(of: ".", with: ",")
+
+        Database.database().reference().child("users").child(uid).child("email").child(encodeEmail).child(encodePrice).removeValue { (error, ref) in
+            if error != nil {
+                print("failed to delete")
+                return
+            }
+
+        }
+
         
         if editingStyle == .delete {
             subscriptionArray.remove(at: indexPath.row)

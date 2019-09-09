@@ -67,6 +67,10 @@ class WelcomeViewController: UIViewController {
      */
     @IBAction func signInButtonTapped(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
+            //replace . with , in email for firebase
+            let encodeEmail = email.replacingOccurrences(of: ".", with: ",")
+            print(encodeEmail)
+            
             //check if signed in or register is selected
             if isSignIn == true {
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
@@ -104,7 +108,7 @@ class WelcomeViewController: UIViewController {
                     
                     let ref = Database.database().reference(fromURL: "https://sub-manager-79124.firebaseio.com/")
                     let userReference = ref.child("users").child(uid)
-                    let values = ["email": email]
+                    let values = ["email": encodeEmail]
                     userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                         if err != nil {
                             print(err?.localizedDescription)
@@ -112,7 +116,6 @@ class WelcomeViewController: UIViewController {
                         }
                         //login to homepage
                         self.performSegue(withIdentifier: "HomePage", sender: self)
-                    
                     })
                 }   
             }
