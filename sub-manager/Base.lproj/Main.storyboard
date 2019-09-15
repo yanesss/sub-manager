@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--My Subscriptions-->
         <scene sceneID="cAO-4h-da5">
             <objects>
                 <viewController storyboardIdentifier="MySubscriptions" id="zib-Aq-F04" customClass="MySubscriptions" customModule="sub_manager" customModuleProvider="target" sceneMemberID="viewController">
@@ -70,8 +70,12 @@
                         <viewLayoutGuide key="safeArea" id="rmf-v1-8te"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="PBh-QM-d97">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="IOm-ts-UO3"/>
+                    <navigationItem key="navigationItem" id="PBh-QM-d97">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="IOm-ts-UO3">
+                            <connections>
+                                <action selector="signOutButton:" destination="zib-Aq-F04" id="hS0-Va-Oh9"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Rvo-Df-EgO">
                             <connections>
                                 <segue destination="2xp-aT-nCh" kind="show" identifier="SubList" id="rwh-AG-VqQ"/>

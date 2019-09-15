@@ -17,6 +17,7 @@
 		8DA583CE22E7FCD2007781BE /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA583CD22E7FCD2007781BE /* WelcomeViewController.swift */; };
 		8DB0650622B30E36006D0EF3 /* Subs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB0650522B30E36006D0EF3 /* Subs.swift */; };
 		8DB45C9C22B0B8B100124381 /* SubCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB45C9B22B0B8B100124381 /* SubCells.swift */; };
+		8DBE7BD82329BC2500B47FDD /* SubscriptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE7BD72329BC2500B47FDD /* SubscriptionList.swift */; };
 		8DD3F0AB22DD68E400526121 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3F0AA22DD68E400526121 /* NotificationNameExtension.swift */; };
 		8DD3F0AD22E05A4100526121 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3F0AC22E05A4100526121 /* StringExtension.swift */; };
 		8DD3F0AF22E1497700526121 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3F0AE22E1497700526121 /* DoubleExtension.swift */; };
@@ -39,6 +40,7 @@
 		8DA583CD22E7FCD2007781BE /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		8DB0650522B30E36006D0EF3 /* Subs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subs.swift; sourceTree = "<group>"; };
 		8DB45C9B22B0B8B100124381 /* SubCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCells.swift; sourceTree = "<group>"; };
+		8DBE7BD72329BC2500B47FDD /* SubscriptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionList.swift; sourceTree = "<group>"; };
 		8DD3F0AA22DD68E400526121 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		8DD3F0AC22E05A4100526121 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		8DD3F0AE22E1497700526121 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				8DB0650522B30E36006D0EF3 /* Subs.swift */,
+				8DBE7BD72329BC2500B47FDD /* SubscriptionList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				8D59C9C422CC5F7500066812 /* PriceViewController.swift in Sources */,
 				8DA583CE22E7FCD2007781BE /* WelcomeViewController.swift in Sources */,
 				8DE57B0122AB3AB900B0C1FB /* AppDelegate.swift in Sources */,
+				8DBE7BD82329BC2500B47FDD /* SubscriptionList.swift in Sources */,
 				8DD3F0AB22DD68E400526121 /* NotificationNameExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

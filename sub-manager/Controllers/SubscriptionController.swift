@@ -23,15 +23,16 @@ class SubscriptionController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return companyArray.count
+        return subscriptions.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listOfSubs", for: indexPath) as! ListOfAvailableSubs
         
-        for i in 0..<companyArray.count {
-            listOfSubscriptions.append(Subs(subscription: companyArray[i], price: priceOfSub[i]))
-            company.append(listOfSubscriptions[i].subscription)
+        //TODO: SORT SUBS IN ORDER
+        for i in subscriptions {
+            listOfSubscriptions.append(Subs(subscription: i.subscription, price: i.price))
+            company.append(i.subscription)
         }
         
         cell.companyName.text = company[indexPath.row]

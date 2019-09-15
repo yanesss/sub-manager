@@ -22,6 +22,7 @@ class MySubscriptions: UIViewController {
     var subscriptionArray: [Subs] = [Subs]()
     var ref: DatabaseReference!
     var refHandle: DatabaseHandle!
+    var KEY: String?
     @IBOutlet weak var signOutButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -105,12 +106,15 @@ class MySubscriptions: UIViewController {
         //when there is a new subscription put into the database
         subscriptionDB.observe(.childAdded) { (snapshot) in
             //grab data inside snapshot
-            print(snapshot)
             let snapshotValue = snapshot.value as! Dictionary<String, String>
+            
+            self.KEY = snapshot.key
+            print(self.KEY)
+            
 
             let sub = snapshotValue["Subscription"]
             let price = snapshotValue["Price"]
-            //price = price?.removeFormatAmount()
+    
             self.priceOfCompany.append(price!)
 
             let subInfo = Subs(subscription: sub!, price: price!)
@@ -127,11 +131,9 @@ class MySubscriptions: UIViewController {
     func monthlyExpense() {
         var cost = 0.00
         for price in priceOfCompany {
-            let formatPrice = price.removeFormatAmount()
-            cost += formatPrice
+            cost += Double(price)!
         }
         cost = cost.roundTo(places: 2)
-        print(cost)
         totalCosts.text = String(cost)
     }
     
@@ -139,8 +141,7 @@ class MySubscriptions: UIViewController {
     func updateMonthlyExpenseOnDelete() {
         var cost: Double = 0.00
         for price in priceOfCompany {
-            let formatPrice = price.removeFormatAmount()
-            cost += formatPrice
+            cost += Double(price)!
         }
         cost = cost.roundTo(places: 2)
         totalCosts.text = String(cost)
@@ -195,18 +196,38 @@ extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
         let sub = self.subscriptionArray[indexPath.row]
         let encodePrice = sub.price.replacingOccurrences(of: ".", with: ",")
 
-        Database.database().reference().child("users").child(uid).child("email").child(encodeEmail).child(encodePrice).removeValue { (error, ref) in
-            if error != nil {
-                print("failed to delete")
-                return
-            }
-
-        }
+//        Database.database().reference().child("users").child(uid).child("email").child(encodeEmail).child(encodePrice).removeValue { (error, ref) in
+//            if error != nil {
+//                print("failed to delete")
+//                return
+//            }
+//
+//        }
+        
+//        Database.database().reference().child("users").child(uid).child("email").child(encodeEmail).child(sub.subscription).removeValue { (error, ref) in
+//            if error != nil {
+//                print("failed to delete")
+//                return
+//            }
+//
+//        }
 
         
         if editingStyle == .delete {
             subscriptionArray.remove(at: indexPath.row)
             priceOfCompany.remove(at: indexPath.row)
+            
+            // TODO: DELETE SUBSCRIPTION FROM DATABASE BY QUERYING THE CHILD AUTO ID
+            
+            Database.database().reference(withPath: "users").child(uid).child("email").child(KEY!).child(encodePrice).removeValue { (error, ref) in
+                if error != nil {
+                    print("failed to delete")
+                    return
+                }
+                
+            }
+            
+            
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .automatic)
             updateMonthlyExpenseOnDelete()
@@ -214,8 +235,6 @@ extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-    
-    
     
 }
 
