@@ -159,7 +159,7 @@ extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
         
         let sub = self.subscriptionArray[indexPath.row]
        
-        //need to capture childAutoId value
+        //capture childAutoId value
         ref.child(uid).observe(.value) { (snapshot) in
             for child in snapshot.children {
                 let snap = child as! DataSnapshot
