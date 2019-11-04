@@ -28,8 +28,9 @@ class WelcomeViewController: UIViewController {
         //observe state of login
         let listener = Auth.auth().addStateDidChangeListener { (auth, user) in
             if user == nil {
-//                self.performSegue(withIdentifier: "loginPage", sender: nil)
                 print("user not logged in")
+            } else {
+                self.performSegue(withIdentifier: "HomePage", sender: self)
             }
         }        
         Auth.auth().removeStateDidChangeListener(listener)
@@ -69,7 +70,7 @@ class WelcomeViewController: UIViewController {
         if let email = emailTextField.text, let password = passwordTextField.text {
             //replace . with , in email for firebase
             let encodeEmail = email.replacingOccurrences(of: ".", with: ",")
-            print(encodeEmail)
+            
             
             //check if signed in or register is selected
             if isSignIn == true {
@@ -90,7 +91,6 @@ class WelcomeViewController: UIViewController {
                         if let errorCode = AuthErrorCode(rawValue: error!._code) {
                             switch errorCode {
                             case .weakPassword:
-                                print("Please provide a strong password")
                                 let alert = UIAlertController(title: "Weak Password", message: "Password must contain at least 6 characters.", preferredStyle: .alert)
                                 alert.addAction(UIAlertAction(title: "Try again", style: .default, handler: nil))
                                 self.present(alert, animated: true)
@@ -108,15 +108,15 @@ class WelcomeViewController: UIViewController {
                     
                     let ref = Database.database().reference(fromURL: "https://sub-manager-79124.firebaseio.com/")
                     let userReference = ref.child("users").child(uid)
-                    let values = ["email": encodeEmail]
-                    userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                        if err != nil {
-                            print(err?.localizedDescription)
-                            return
-                        }
+//                    let values = ["email": encodeEmail]
+//                    userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+//                        if err != nil {
+//                            print(err?.localizedDescription)
+//                            return
+//                        }
                         //login to homepage
                         self.performSegue(withIdentifier: "HomePage", sender: self)
-                    })
+                    //})
                 }   
             }
             //clears password after user signs in
@@ -139,7 +139,7 @@ class WelcomeViewController: UIViewController {
             let alert = UIAlertController(title: "Error", message: "Incorrect password or email", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
             present(alert, animated: true)
-            emailTextField.text = ""
+//            emailTextField.text = ""
             passwordTextField.text = ""
         } else {
             let alert = UIAlertController(title: "Error", message: "Must be valid email address and password with a minimum of 6 characters", preferredStyle: .alert)

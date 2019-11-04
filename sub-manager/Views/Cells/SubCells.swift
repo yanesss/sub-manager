@@ -15,7 +15,6 @@ class SubCells: UITableViewCell {
     @IBOutlet weak var companyName: UILabel!
     @IBOutlet weak var price: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -22,10 +22,8 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         priceOfSubscription.delegate = self
         priceOfSubscription.placeholder = updateAmount()
-        
         
         if let subscriptionToLoad = selectedSubscription {
             nameOfSubscription.text = subscriptionToLoad
@@ -51,9 +49,10 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-        //TODO: FIX EMAIL GETTING ERASED
+         let encodeEmail = email.replacingOccurrences(of: ".", with: ",") //firebase does not allow the "." so replace with ,
         
-        let subscriptionDB = ref.child("/users/\(uid)").child("email")
+        //let subscriptionDB = ref.child("/users/\(uid)").child(encodeEmail)
+        let subscriptionDB = ref.child("users").child(uid)
         
         guard let price = priceOfSubscription.text else {
             return
@@ -66,7 +65,7 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
         }
         
         let subscriptionDictionary = ["Subscription": selectedSubscription, "Price": strPrice]
-        subscriptionDB.childByAutoId().updateChildValues(subscriptionDictionary)
+        subscriptionDB.childByAutoId().updateChildValues(subscriptionDictionary)        
     }
     
     
@@ -80,7 +79,6 @@ class PriceViewController: UIViewController, UITextFieldDelegate {
             amount = amount / 10
             priceOfSubscription.text = updateAmount()
         }
-
         return false
     }
 

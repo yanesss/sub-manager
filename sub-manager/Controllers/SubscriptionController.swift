@@ -12,8 +12,6 @@ import UIKit
 class SubscriptionController: UITableViewController {
 
     @IBOutlet var myTableView: UITableView!
-    let companyArray = ["Twitch", "Netflix", "Amazon"] //need to have this info in the data base
-    let priceOfSub = ["4.99", "9.99","24.99"] //need this to be user entered
     var company : [String] = []
     var listOfSubscriptions: [Subs] = [Subs]()
     
@@ -36,7 +34,6 @@ class SubscriptionController: UITableViewController {
         }
         
         cell.companyName.text = company[indexPath.row]
-        
         return cell
     }
     
