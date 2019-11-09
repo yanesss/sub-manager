@@ -174,7 +174,7 @@ extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
                             print(ref.child(uid).child(key).child(sub.subscription))
                             ref.child(uid).child(key).removeValue { (err, ref) in
                                 if err != nil {
-                                    print(err?.localizedDescription)
+                                    print(err?.localizedDescription as Any)
                                     return
                                 }
                             }
@@ -184,7 +184,6 @@ extension MySubscriptions: UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-    
         if editingStyle == .delete {
             subscriptionArray.remove(at: indexPath.row)
             priceOfCompany.remove(at: indexPath.row)

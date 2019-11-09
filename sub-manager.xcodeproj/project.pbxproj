@@ -18,6 +18,10 @@
 		8DB0650622B30E36006D0EF3 /* Subs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB0650522B30E36006D0EF3 /* Subs.swift */; };
 		8DB45C9C22B0B8B100124381 /* SubCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DB45C9B22B0B8B100124381 /* SubCells.swift */; };
 		8DBE7BD82329BC2500B47FDD /* SubscriptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE7BD72329BC2500B47FDD /* SubscriptionList.swift */; };
+		8DC759B22376539400A195C2 /* price-page.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC759AF2376539400A195C2 /* price-page.png */; };
+		8DC759B32376539400A195C2 /* my-subscriptions.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC759B02376539400A195C2 /* my-subscriptions.png */; };
+		8DC759B42376539400A195C2 /* subscription-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC759B12376539400A195C2 /* subscription-list.png */; };
+		8DC759B62376539900A195C2 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 8DC759B52376539900A195C2 /* home.png */; };
 		8DD3F0AB22DD68E400526121 /* NotificationNameExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3F0AA22DD68E400526121 /* NotificationNameExtension.swift */; };
 		8DD3F0AD22E05A4100526121 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3F0AC22E05A4100526121 /* StringExtension.swift */; };
 		8DD3F0AF22E1497700526121 /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3F0AE22E1497700526121 /* DoubleExtension.swift */; };
@@ -41,6 +45,10 @@
 		8DB0650522B30E36006D0EF3 /* Subs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subs.swift; sourceTree = "<group>"; };
 		8DB45C9B22B0B8B100124381 /* SubCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCells.swift; sourceTree = "<group>"; };
 		8DBE7BD72329BC2500B47FDD /* SubscriptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionList.swift; sourceTree = "<group>"; };
+		8DC759AF2376539400A195C2 /* price-page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "price-page.png"; sourceTree = "<group>"; };
+		8DC759B02376539400A195C2 /* my-subscriptions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "my-subscriptions.png"; sourceTree = "<group>"; };
+		8DC759B12376539400A195C2 /* subscription-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "subscription-list.png"; sourceTree = "<group>"; };
+		8DC759B52376539900A195C2 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		8DD3F0AA22DD68E400526121 /* NotificationNameExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNameExtension.swift; sourceTree = "<group>"; };
 		8DD3F0AC22E05A4100526121 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		8DD3F0AE22E1497700526121 /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
@@ -98,9 +106,21 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		8DC759AE2376536700A195C2 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				8DC759B02376539400A195C2 /* my-subscriptions.png */,
+				8DC759B52376539900A195C2 /* home.png */,
+				8DC759B12376539400A195C2 /* subscription-list.png */,
+				8DC759AF2376539400A195C2 /* price-page.png */,
+			);
+			path = screenshots;
+			sourceTree = "<group>";
+		};
 		8DE57AF422AB3AB800B0C1FB = {
 			isa = PBXGroup;
 			children = (
+				8DC759AE2376536700A195C2 /* screenshots */,
 				8DE57AFF22AB3AB900B0C1FB /* sub-manager */,
 				8DE57AFE22AB3AB900B0C1FB /* Products */,
 				421710BE9EDDB23DBCBB6CF2 /* Pods */,
@@ -236,11 +256,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D6BCE2D22B9F23600198D6D /* ListOfAvailableSubs.xib in Resources */,
+				8DC759B22376539400A195C2 /* price-page.png in Resources */,
 				8DE57B0B22AB3ABD00B0C1FB /* LaunchScreen.storyboard in Resources */,
+				8DC759B32376539400A195C2 /* my-subscriptions.png in Resources */,
+				8DC759B62376539900A195C2 /* home.png in Resources */,
 				8DE57B1322AB3D0000B0C1FB /* GoogleService-Info.plist in Resources */,
 				8D596D1522B47F3E00563026 /* CustomSubCells.xib in Resources */,
 				8DE57B0822AB3ABD00B0C1FB /* Assets.xcassets in Resources */,
 				8DE57B0622AB3AB900B0C1FB /* Main.storyboard in Resources */,
+				8DC759B42376539400A195C2 /* subscription-list.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
